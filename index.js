@@ -38,13 +38,31 @@ if (process.env.SLACK_KEY) {
   }
 }
 
-if (process.env.MATTERMOST_KEY) {
-  if (!process.env.MATTERMOST_SECRET) {
+if (process.env.MATTERMOST_SERVER_URL) {
+  if (!process.env.MATTERMOST_KEY) {
     console.error(
-      `The MATTERMOST_SECRET env variable must be set when using Mattermost Sign In`
+      `The MATTERMOST_KEY env variable must be set when using Mattermost Sign In`
     );
     // $FlowFixMe
     process.exit(1);
+  }
+  else {
+    if (!process.env.MATTERMOST_SECRET) {
+      console.error(
+        `The MATTERMOST_SECRET env variable must be set when using Mattermost Sign In`
+      );
+      // $FlowFixMe
+      process.exit(1);
+    }
+    else {
+      if (!process.env.MATTERMOST_TEAM_NAME || !process.env.MATTERMOST_SERVER_NAME) {
+        console.error(
+          `The MATTERMOST_TEAM_NAME (restrict to one team) or MATTERMOST_SERVER_NAME (shared across teams) env variable must be set when using Mattermost Sign In`
+        );
+        // $FlowFixMe
+        process.exit(1);
+      }
+    }
   }
 }
 
