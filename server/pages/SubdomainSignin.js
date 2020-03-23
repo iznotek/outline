@@ -18,6 +18,7 @@ type Props = {
   lastSignedIn: string,
   googleSigninEnabled: boolean,
   slackSigninEnabled: boolean,
+  mattermostSigninEnabled: boolean,
   hostname: string,
 };
 
@@ -28,10 +29,12 @@ function SubdomainSignin({
   notice,
   googleSigninEnabled,
   slackSigninEnabled,
+  mattermostSigninEnabled,
   hostname,
 }: Props) {
   googleSigninEnabled = !!team.googleId && googleSigninEnabled;
   slackSigninEnabled = !!team.slackId && slackSigninEnabled;
+  mattermostSigninEnabled = !!team.mattermostId && mattermostSigninEnabled;
 
   const guestSigninEnabled = team.guestSignin;
   const guestSigninForm = (
@@ -47,7 +50,7 @@ function SubdomainSignin({
 
   // only show the "last signed in" hint if there is more than one option available
   const signinHint =
-    googleSigninEnabled && slackSigninEnabled ? lastSignedIn : undefined;
+    googleSigninEnabled && slackSigninEnabled || googleSigninEnabled && mattermostSigninEnabled ? lastSignedIn : undefined;
 
   return (
     <React.Fragment>
@@ -70,6 +73,7 @@ function SubdomainSignin({
                 <SigninButtons
                   googleSigninEnabled={googleSigninEnabled}
                   slackSigninEnabled={slackSigninEnabled}
+                  mattermostSigninEnabled={mattermostSigninEnabled}
                   lastSignedIn={signinHint}
                 />
               </p>
@@ -84,6 +88,7 @@ function SubdomainSignin({
                 <SigninButtons
                   googleSigninEnabled={googleSigninEnabled}
                   slackSigninEnabled={slackSigninEnabled}
+                  mattermostSigninEnabled={mattermostSigninEnabled}
                   lastSignedIn={signinHint}
                 />
               </p>

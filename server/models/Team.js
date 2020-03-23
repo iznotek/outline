@@ -49,6 +49,7 @@ const Team = sequelize.define(
       unique: true,
     },
     slackId: { type: DataTypes.STRING, allowNull: true },
+    mattermostId: { type: DataTypes.STRING, allowNull: true },
     googleId: { type: DataTypes.STRING, allowNull: true },
     avatarUrl: { type: DataTypes.STRING, allowNull: true },
     sharing: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true },
@@ -63,6 +64,7 @@ const Team = sequelize.define(
       defaultValue: true,
     },
     slackData: DataTypes.JSONB,
+    mattermostData: DataTypes.JSONB,
   },
   {
     getterMethods: {

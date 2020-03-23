@@ -25,6 +25,32 @@ export function slackAuth(
   return `${baseUrl}?${urlParams}`;
 }
 
+export function mattermostAuth(
+  state: string,
+  scopes: string[] = [
+    'identity.email',
+    'identity.basic',
+    'identity.avatar',
+    'identity.team',
+  ],
+  redirectUri: string = `${process.env.URL}/auth/mattermost.callback`
+): string {
+  const baseUrl = `${process.env.MATTERMOST_SERVER_URL}/oauth/authorize`;
+  const params = {
+    response_type: 'code',
+    client_id: process.env.MATTERMOST_KEY,
+    scope: scopes ? scopes.join(' ') : '',
+    redirect_uri: redirectUri,
+    state,
+  };
+
+  const urlParams = Object.keys(params)
+    .map(key => `${key}=${encodeURIComponent(params[key])}`)
+    .join('&');
+
+  return `${baseUrl}?${urlParams}`;
+}
+
 export function githubUrl(): string {
   return 'https://www.github.com/outline';
 }

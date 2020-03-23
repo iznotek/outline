@@ -9,6 +9,7 @@ import { Team } from '../models';
 import { stripSubdomain } from '../../shared/utils/domains';
 
 import slack from './slack';
+import mattermost from './mattermost';
 import google from './google';
 import email from './email';
 
@@ -16,6 +17,7 @@ const app = new Koa();
 const router = new Router();
 
 router.use('/', slack.routes());
+router.use('/', mattermost.routes());
 router.use('/', google.routes());
 router.use('/', email.routes());
 

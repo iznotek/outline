@@ -7,6 +7,7 @@ class Team extends BaseModel {
   name: string;
   avatarUrl: string;
   slackConnected: boolean;
+  mattermostConnected: boolean;
   googleConnected: boolean;
   sharing: boolean;
   documentEmbeds: boolean;
@@ -16,9 +17,13 @@ class Team extends BaseModel {
 
   @computed
   get signinMethods(): string {
+    if (this.mattermostConnected && this.googleConnected) {
+      return 'Mattermost or Google';
+    }
     if (this.slackConnected && this.googleConnected) {
       return 'Slack or Google';
     }
+    if (this.mattermostConnected) return 'Mattermost';
     if (this.slackConnected) return 'Slack';
     return 'Google';
   }

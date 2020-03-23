@@ -98,7 +98,7 @@ class Notifications extends React.Component<Props> {
         <HelpText>
           Manage when and where you receive email notifications from Outline.
           Your email address can be updated in your{' '}
-          {team.slackConnected ? 'Slack' : 'Google'} account.
+          {team.slackConnected ? 'Slack' : team.mattermostConnected ? 'Mattermost' : 'Google'} account.
         </HelpText>
 
         <Input

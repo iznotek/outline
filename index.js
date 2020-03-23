@@ -38,6 +38,16 @@ if (process.env.SLACK_KEY) {
   }
 }
 
+if (process.env.MATTERMOST_KEY) {
+  if (!process.env.MATTERMOST_SECRET) {
+    console.error(
+      `The MATTERMOST_SECRET env variable must be set when using Mattermost Sign In`
+    );
+    // $FlowFixMe
+    process.exit(1);
+  }
+}
+
 if (!process.env.URL) {
   console.error(
     'The URL env variable must be set to the externally accessible URL, e.g (https://www.getoutline.com)'

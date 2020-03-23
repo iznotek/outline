@@ -12,6 +12,7 @@ import presentIntegration from './integration';
 import presentMembership from './membership';
 import presentNotificationSetting from './notificationSetting';
 import presentSlackAttachment from './slackAttachment';
+import presentMattermostAttachment from './mattermostAttachment';
 import presentPolicies from './policy';
 import presentGroup from './group';
 import presentGroupMembership from './groupMembership';
@@ -32,6 +33,7 @@ export {
   presentMembership,
   presentNotificationSetting,
   presentSlackAttachment,
+  presentMattermostAttachment,
   presentPolicies,
   presentGroupMembership,
   presentCollectionGroupMembership,

@@ -7,11 +7,13 @@ import Flex from '../../../shared/components/Flex';
 import Notice from '../../../shared/components/Notice';
 import GoogleLogo from '../../../shared/components/GoogleLogo';
 import SlackLogo from '../../../shared/components/SlackLogo';
+import MattermostLogo from '../../../shared/components/MattermostLogo';
 import breakpoint from 'styled-components-breakpoint';
 
 type Props = {
   lastSignedIn?: string,
   googleSigninEnabled: boolean,
+  mattermostSigninEnabled: boolean,
   slackSigninEnabled: boolean,
   guestSigninEnabled?: boolean,
 };
@@ -19,15 +21,17 @@ type Props = {
 const SigninButtons = ({
   lastSignedIn,
   slackSigninEnabled,
+  mattermostSigninEnabled,
   googleSigninEnabled,
   guestSigninEnabled,
 }: Props) => {
   return (
     <Wrapper>
       {!slackSigninEnabled &&
+        !mattermostSigninEnabled &&
         !googleSigninEnabled && (
           <Notice>
-            Neither Slack or Google sign in is enabled. You must configure at
+            Neither Slack, Mattermost or Google sign in is enabled. You must configure at
             least one authentication method to sign in to Outline.
           </Notice>
         )}
@@ -39,6 +43,17 @@ const SigninButtons = ({
           </Button>
           <LastLogin>
             {lastSignedIn === 'slack' && 'You signed in with Slack previously'}
+          </LastLogin>
+        </Column>
+      )}
+      {mattermostSigninEnabled && (
+        <Column column>
+          <Button href={signin('mattermost')}>
+            <MattermostLogo />
+            <Spacer>Sign In with Mattermmost</Spacer>
+          </Button>
+          <LastLogin>
+            {lastSignedIn === 'mattermost' && 'You signed in with Mattermost previously'}
           </LastLogin>
         </Column>
       )}

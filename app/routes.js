@@ -18,6 +18,7 @@ import Security from 'scenes/Settings/Security';
 import People from 'scenes/Settings/People';
 import Groups from 'scenes/Settings/Groups';
 import Slack from 'scenes/Settings/Slack';
+import Mattermost from 'scenes/Settings/Mattermost';
 import Zapier from 'scenes/Settings/Zapier';
 import Shares from 'scenes/Settings/Shares';
 import Tokens from 'scenes/Settings/Tokens';
@@ -70,6 +71,11 @@ export default function Routes() {
                 exact
                 path="/settings/integrations/slack"
                 component={Slack}
+              />
+              <Route
+                exact
+                path="/settings/integrations/mattermost"
+                component={Mattermost}
               />
               <Route
                 exact

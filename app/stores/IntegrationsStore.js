@@ -21,6 +21,11 @@ class IntegrationsStore extends BaseStore<Integration> {
   get slackIntegrations(): Integration[] {
     return filter(this.orderedData, { service: 'slack' });
   }
+
+  @computed
+  get mattermostIntegrations(): Integration[] {
+    return filter(this.orderedData, { service: 'mattermost' });
+  }
 }
 
 export default IntegrationsStore;
