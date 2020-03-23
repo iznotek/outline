@@ -22,6 +22,7 @@ import Trello from './Trello';
 import Typeform from './Typeform';
 import Vimeo from './Vimeo';
 import YouTube from './YouTube';
+import PeerTube from './Peertube';
 
 export default {
   Abstract,
@@ -47,4 +48,5 @@ export default {
   Typeform,
   Vimeo,
   YouTube,
+  PeerTube
 };
