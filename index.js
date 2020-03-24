@@ -55,7 +55,7 @@ if (process.env.MATTERMOST_SERVER_URL) {
       process.exit(1);
     }
     else {
-      if (!process.env.MATTERMOST_TEAM_NAME || !process.env.MATTERMOST_SERVER_NAME) {
+      if (!process.env.MATTERMOST_TEAM_NAME && !process.env.MATTERMOST_SERVER_NAME) {
         console.error(
           `The MATTERMOST_TEAM_NAME (restrict to one team) or MATTERMOST_SERVER_NAME (shared across teams) env variable must be set when using Mattermost Sign In`
         );
