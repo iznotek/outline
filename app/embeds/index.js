@@ -22,7 +22,7 @@ import Trello from './Trello';
 import Typeform from './Typeform';
 import Vimeo from './Vimeo';
 import YouTube from './YouTube';
-import PeerTube from './Peertube';
+import PeerTube from './PeerTube';
 
 export default {
   Abstract,
