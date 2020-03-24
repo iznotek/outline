@@ -80,6 +80,8 @@ export async function request(endpoint: string, body: Object) {
   else {
     throw new InvalidRequestError("Please set at least one of env vars MATTERMOST_SERVER_NAME (shared all teams) or MATTERMOST_TEAM_NAME (specified team user restriction).");
   }
+  
+  data.team.image = process.env.TEAM_LOGO;
   return data;
 }
 

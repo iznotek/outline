@@ -23,7 +23,7 @@ function HeaderBlock({
 }: Props) {
   return (
     <Header justify="flex-start" align="center" {...rest}>
-      <TeamLogo alt={`${teamName} logo`} src={logoUrl} />
+      <TeamLogo alt={`${teamName} logo`} src={logoUrl || process.env.TEAM_LOGO} />
       <Flex align="flex-start" column>
         <TeamName showDisclosure>
           {teamName}{' '}

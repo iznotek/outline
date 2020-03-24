@@ -54,6 +54,7 @@ router.get('mattermost.callback', auth({ required: false }), async ctx => {
     data.team = {};
     data.team.name = capitalize(user.name);
     data.team.domain = toLower(user.name);
+    data.team.image = process.env.TEAM_LOGO;
   }
 
   const [team, isFirstUser] = await Team.findOrCreate({
@@ -62,7 +63,7 @@ router.get('mattermost.callback', auth({ required: false }), async ctx => {
     },
     defaults: {
       name: data.team.name,
-      avatarUrl: data.team.image || process.env.TEAM_LOGO,
+      avatarUrl: data.team.image,
     },
   });
 
@@ -100,9 +101,9 @@ router.get('mattermost.callback', auth({ required: false }), async ctx => {
       });
     }
 
-    // to fix by mattermost image api
+    // to fix by ../mattermost.js from image api
     await team.update({
-      avatarUrl: process.env.TEAM_LOGO,
+      avatarUrl: data.team.image,
     });
 
     // update email address if it's changed in Mattermost
