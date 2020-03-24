@@ -62,7 +62,7 @@ router.get('mattermost.callback', auth({ required: false }), async ctx => {
     },
     defaults: {
       name: data.team.name,
-      avatarUrl: data.team.image_88 || undefined,
+      avatarUrl: data.team.image || process.env.TEAM_LOGO,
     },
   });
 
@@ -87,7 +87,7 @@ router.get('mattermost.callback', auth({ required: false }), async ctx => {
         name: data.user.name,
         email: data.user.email,
         isAdmin: isFirstUser,
-        avatarUrl: data.user.image_192 || undefined,
+        avatarUrl: data.user.image || undefined,
       },
     });
 
@@ -96,9 +96,14 @@ router.get('mattermost.callback', auth({ required: false }), async ctx => {
       await user.update({
         service: 'mattermost',
         serviceId: data.user.id,
-        avatarUrl: data.user.image_192,
+        avatarUrl: data.user.image,
       });
     }
+
+    // to fix by mattermost image api
+    await team.update({
+      avatarUrl: process.env.TEAM_LOGO,
+    });
 
     // update email address if it's changed in Mattermost
     if (!isFirstSignin && data.user.email !== user.email) {
